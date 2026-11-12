@@ -34,6 +34,13 @@ Wallpapers that flow into your tabs, tab groups, split view, napping tabs and yo
 </tr>
 </table>
 
+## How fast is it?
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="shots/bench-dark.svg">
+  <img src="shots/bench-light.svg" width="900" alt="Snoozle vs Firefox. Startup: 0.78 s vs 1.79 s. Memory with 1 tab: 252 MB vs 635 MB. Memory with 6 sites open: 1.2 GB vs 2.4 GB. Speedometer 3.1: 15.6 vs 10.8.">
+</picture>
+
 ## What's inside
 
 | | |

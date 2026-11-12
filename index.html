@@ -130,6 +130,8 @@ h1 .w>span{display:inline-block;transform:translateY(105%);transition:transform 
 
 /* ---------- sections ---------- */
 section{padding:120px 0}
+.bench{max-width:900px;margin:44px auto 0}.bench img{width:100%;height:auto;display:block;border-radius:22px;box-shadow:var(--shadow)}.bench .d,[data-theme=dark] .bench .l{display:none}[data-theme=dark] .bench .d{display:block}
+
 .eyebrow{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);display:flex;align-items:center;gap:10px;margin-bottom:16px}
 .eyebrow b{font:italic 500 18px var(--serif);color:var(--bamboo);letter-spacing:0;text-transform:none}
 h2{font:400 clamp(40px,5.4vw,72px)/1 var(--serif);font-variation-settings:"SOFT" 100,"WONK" 1,"opsz" 144;letter-spacing:-.03em;margin:0 0 22px}
@@ -301,7 +303,7 @@ footer a{color:rgba(243,236,223,.85)}
  <div class=wrap>
   <a class=logo href="#"><img src="panda.png" alt="">snoozle</a>
   <span class=tag>v1.3.3 · Windows</span>
-  <nav><a href="#tour">Take a look</a><a href="#stuff">Features</a><a href="#new">What's new</a><a href="#install">Install</a>
+  <nav><a href="#tour">Take a look</a><a href="#stuff">Features</a><a href="#speed">Speed</a><a href="#new">What's new</a><a href="#install">Install</a>
    <button class=mode id=mode type=button aria-label="Switch to dark mode" title="Light / dark">
     <svg class=sun viewBox="0 0 24 24"><circle cx=12 cy=12 r=4.5 /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
     <svg class=moon viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
@@ -401,9 +403,18 @@ footer a{color:rgba(243,236,223,.85)}
  </div>
 </section>
 
+<section id=speed style="padding-top:20px">
+ <div class=wrap>
+  <div class=rv><div class=eyebrow><b>02</b> how fast</div>
+  <h2>Light on its feet, <em>for a sleepy bear.</em></h2>
+  <p class=intro>We put Snoozle up against Firefox on the same PC. It opens faster, uses about half the memory, and runs web apps quicker.</p></div>
+  <div class="bench rv"><img class=l src="shots/bench-light.svg" width=900 height=612 alt="Snoozle vs Firefox. Startup: 0.78 s vs 1.79 s. Memory with 1 tab: 252 MB vs 635 MB. Memory with 6 sites open: 1.2 GB vs 2.4 GB. Speedometer 3.1: 15.6 vs 10.8." loading=lazy><img class=d src="shots/bench-dark.svg" width=900 height=612 alt="" loading=lazy></div>
+ </div>
+</section>
+
 <section id=new style="padding-top:20px">
  <div class=wrap>
-  <div class=rv><div class=eyebrow><b>02</b> what's new</div>
+  <div class=rv><div class=eyebrow><b>03</b> what's new</div>
   <h2>Fresh out of <em>the bamboo.</em></h2>
   <p class=intro>Snoozle tells you when a new version is out, and updating keeps all your bookmarks and settings.</p></div>
   <div class="news rv" id=news>
@@ -416,7 +427,7 @@ footer a{color:rgba(243,236,223,.85)}
 
 <section id=install style="padding-top:20px">
  <div class=wrap>
-  <div class=rv><div class=eyebrow><b>03</b> install</div>
+  <div class=rv><div class=eyebrow><b>04</b> install</div>
   <h2>Up and running <em>before your tea cools.</em></h2></div>
   <div class=steps>
    <div class="step rv"><b>Download</b><span>Grab <kbd>Snoozle-Setup.exe</kbd> with any of the big download buttons.</span></div>
@@ -429,7 +440,7 @@ footer a{color:rgba(243,236,223,.85)}
 
 <section id=faq style="padding-top:20px">
  <div class="wrap faq">
-  <div class=rv><div class=eyebrow><b>04</b> questions</div>
+  <div class=rv><div class=eyebrow><b>05</b> questions</div>
   <h2>Sleepy <em>questions.</em></h2></div>
   <div class="qs rv">
    <details><summary>Is Snoozle free?</summary><p>Yes, completely. No account, no subscription, no ads of its own.</p></details>
