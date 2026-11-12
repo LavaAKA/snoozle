@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang=en>
+<html lang=en class=paused>
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
@@ -211,10 +211,16 @@ footer a{color:rgba(243,236,223,.85)}
 }
 @media (max-width:520px){.wrap{padding:0 16px}.win .tab{width:100px}.win .page{height:240px}.win .clock{font-size:44px}.bubble{display:none}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}h1 .w>span,.fade,.rv{transform:none!important;opacity:1!important}.squig path{stroke-dashoffset:0}.leaf{display:none}}
+/* downloads paused: remove the "paused" class on <html> (and the banner) to bring them back */
+.pausenote{display:none}
+.paused .pausenote{display:block;background:#fff3a8;color:#1b1a16;border-bottom:1.5px solid #1b1a16;font-size:15px;line-height:1.45;padding:12px 0;position:relative;z-index:21}
+.paused .pausenote .wrap{display:flex;gap:10px;align-items:baseline}
+.paused .dlbtn{pointer-events:none;opacity:.45;filter:grayscale(1)}
 </style>
 </head>
 <body>
 
+<div class=pausenote role=status><div class=wrap><b>Downloads are paused for a little while.</b><span>Windows Defender wrongly flagged Snoozle's installer, so we've taken it down while we fix it. A new version is on its way.</span></div></div>
 <header class=top id=top>
  <div class=wrap>
   <a class=logo href="#"><img src="panda.png" alt="">snoozle</a>
