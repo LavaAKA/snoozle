@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Snoozle — a cozy web browser</title>
+<meta name=description content="Snoozle is a calm, panda-themed web browser for Windows. Themes, wallpapers, your own gradients, extensions and more.">
+<link rel=icon href="panda.png">
+<style>
+:root{--bg1:#eef4ea;--bg2:#dfeedd;--solid:#fbfcfa;--card:rgba(255,255,255,.75);--fg:#1d2a20;--dim:#5f6d61;--accent:#2e9e5b;--accent-fg:#fff;--line:rgba(0,0,0,.08);--bamboo:#9fcf98;--bamboo2:#7dbb79;--shadow:0 10px 40px rgba(40,90,50,.14)}
+@media (prefers-color-scheme:dark){:root{--bg1:#141816;--bg2:#0f1712;--solid:#1f2521;--card:rgba(38,44,40,.75);--fg:#e9efe9;--dim:#9aa59c;--accent:#5fd38a;--accent-fg:#0d1f14;--line:rgba(255,255,255,.08);--bamboo:#23402a;--bamboo2:#2c5234;--shadow:0 10px 40px rgba(0,0,0,.45)}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(1200px 700px at 50% -10%,var(--bg1),var(--bg2)) fixed;color:var(--fg);font:16px/1.55 "Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,sans-serif;overflow-x:hidden}
+a{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+nav{display:flex;align-items:center;gap:10px;padding:18px 0}
+nav b{font:700 20px "Segoe UI Variable Display","Segoe UI",system-ui;letter-spacing:-.01em}
+nav img{width:32px;height:32px}
+nav .sp{flex:1}
+nav a.lnk{color:var(--fg);text-decoration:none;font-weight:600;font-size:14px;padding:8px 12px;border-radius:10px}
+nav a.lnk:hover{background:var(--line)}
+
+.hero{text-align:center;padding:56px 0 40px}
+.panda{width:170px;height:150px;margin:0 auto 10px;position:relative}
+.panda svg{width:170px;height:150px;animation:breathe 4s ease-in-out infinite;transform-origin:50% 90%}
+@keyframes breathe{50%{transform:scale(1.03,.98)}}
+.z{position:absolute;font:700 20px "Segoe UI Variable Display","Segoe UI",system-ui;color:var(--accent);opacity:0;animation:float 3.6s ease-in infinite}
+.z1{left:134px;top:24px}.z2{left:150px;top:6px;font-size:15px;animation-delay:1.2s}.z3{left:164px;top:-10px;font-size:12px;animation-delay:2.4s}
+@keyframes float{0%{opacity:0;transform:translate(0,8px)}25%{opacity:.9}100%{opacity:0;transform:translate(14px,-22px)}}
+h1{font:700 clamp(40px,7vw,68px)/1.05 "Segoe UI Variable Display","Segoe UI",system-ui;letter-spacing:-.03em;margin:8px 0 14px}
+h1 em{font-style:normal;color:var(--accent)}
+.lead{font-size:clamp(17px,2.2vw,20px);color:var(--dim);max-width:580px;margin:0 auto 30px}
+.dl{display:inline-flex;align-items:center;gap:12px;padding:16px 28px;border-radius:999px;background:var(--accent);color:var(--accent-fg);font:700 18px "Segoe UI Variable Display","Segoe UI",system-ui;text-decoration:none;box-shadow:0 10px 30px color-mix(in srgb,var(--accent) 40%,transparent);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+.dl:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 14px 40px color-mix(in srgb,var(--accent) 50%,transparent)}
+.dl:focus-visible{outline:3px solid var(--fg);outline-offset:3px}
+.dl svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.meta{margin-top:14px;color:var(--dim);font-size:14px}
+
+/* a little picture of the browser */
+.shot{margin:56px auto 0;max-width:880px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);background:linear-gradient(135deg,#ffd3b6,#ffaaa5,#ff8b94)}
+.shot .strip{display:flex;align-items:flex-end;gap:4px;height:40px;padding:0 10px}
+.shot .tab{height:31px;width:170px;border-radius:9px 9px 0 0;padding:0 12px;display:flex;align-items:center;gap:8px;font-size:12.5px;color:#3b2626}
+.shot .tab.on{background:rgba(255,255,255,.45)}
+.shot .tab i{width:12px;height:12px;border-radius:50%;background:#2e9e5b;flex:none}
+.shot .lights{margin-left:auto;align-self:center;display:flex;gap:7px}
+.shot .lights i{width:12px;height:12px;border-radius:50%}
+.shot .bar{display:flex;align-items:center;gap:10px;height:46px;padding:0 14px;background:rgba(255,255,255,.45)}
+.shot .pill{flex:1;height:32px;border-radius:16px;background:rgba(255,255,255,.65);display:flex;align-items:center;padding:0 14px;font-size:13px;color:#5b4444}
+.shot .dot{width:18px;height:18px;border-radius:6px;background:rgba(0,0,0,.12)}
+.shot .page{height:300px;display:grid;place-items:center;align-content:center;gap:8px;color:#3b2626}
+.shot .page .t{font:600 54px/1 "Segoe UI Variable Display","Segoe UI",system-ui;letter-spacing:-.02em}
+.shot .page .s{width:min(420px,80%);height:42px;border-radius:21px;background:rgba(255,255,255,.7);margin-top:14px}
+
+section{padding:70px 0 10px}
+h2{font:700 clamp(28px,4vw,38px)/1.15 "Segoe UI Variable Display","Segoe UI",system-ui;letter-spacing:-.02em;text-align:center;margin:0 0 10px}
+.sub{text-align:center;color:var(--dim);margin:0 auto 36px;max-width:560px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.card{background:var(--card);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:20px;padding:22px;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.card:hover{transform:translateY(-3px)}
+.card .ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:22px;background:color-mix(in srgb,var(--accent) 16%,transparent);margin-bottom:12px}
+.card h3{margin:0 0 6px;font:600 17px "Segoe UI Variable Display","Segoe UI",system-ui}
+.card p{margin:0;color:var(--dim);font-size:14.5px}
+
+.steps{counter-reset:s;display:grid;gap:14px;max-width:640px;margin:0 auto;padding:0;list-style:none}
+.steps li{counter-increment:s;display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px}
+.steps li::before{content:counter(s);flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--accent-fg);font-weight:700}
+.steps b{display:block;margin-bottom:2px}
+.steps span{color:var(--dim);font-size:14.5px}
+kbd{font:600 13px inherit;font-family:inherit;padding:1px 7px;border-radius:6px;border:1px solid var(--line);background:var(--solid)}
+
+.cta{text-align:center;padding:80px 0 60px}
+footer{text-align:center;color:var(--dim);font-size:13.5px;padding:30px 0 40px;border-top:1px solid var(--line)}
+
+.bamboo{position:fixed;bottom:0;width:180px;height:70vh;max-height:520px;pointer-events:none;z-index:0}
+.bamboo.l{left:-10px}.bamboo.r{right:-10px;transform:scaleX(-1)}
+@media (max-width:1100px){.bamboo{display:none}}
+@media (max-width:640px){nav a.lnk{display:none}.shot .tab{width:110px}.shot .page{height:220px}.shot .page .t{font-size:40px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.z1{opacity:.7}}
+</style>
+</head>
+<body>
+<svg class="bamboo l" viewBox="0 0 180 520" preserveAspectRatio="xMinYMax meet" aria-hidden=true>
+ <g fill="var(--bamboo)"><rect x=40 y=40 width=16 height=480 rx=8 /><rect x=92 y=140 width=12 height=380 rx=6 /></g>
+ <g fill="var(--bamboo2)"><rect x=38 y=150 width=20 height=5 rx=2.5 /><rect x=38 y=280 width=20 height=5 rx=2.5 /><rect x=38 y=410 width=20 height=5 rx=2.5 /><rect x=90 y=250 width=16 height=4 rx=2 /><rect x=90 y=380 width=16 height=4 rx=2 /></g>
+ <g fill="var(--bamboo)"><path d="M56 150c30-10 50-30 64-52-28 6-50 24-64 52z"/><path d="M40 280c-22-8-34-24-38-44 20 6 32 22 38 44z"/><path d="M104 250c26-6 42-22 52-42-24 4-42 20-52 42z"/></g>
+</svg>
+<svg class="bamboo r" viewBox="0 0 180 520" preserveAspectRatio="xMinYMax meet" aria-hidden=true>
+ <g fill="var(--bamboo)"><rect x=50 y=90 width=14 height=430 rx=7 /></g>
+ <g fill="var(--bamboo2)"><rect x=48 y=200 width=18 height=5 rx=2.5 /><rect x=48 y=330 width=18 height=5 rx=2.5 /><rect x=48 y=450 width=18 height=5 rx=2.5 /></g>
+ <g fill="var(--bamboo)"><path d="M64 200c28-8 46-26 58-48-26 4-46 22-58 48z"/><path d="M48 330c-24-6-38-22-44-42 22 4 36 20 44 42z"/></g>
+</svg>
+
+<div class=wrap>
+ <nav>
+  <img src="panda.png" alt=""><b>Snoozle</b><span class=sp></span>
+  <a class=lnk href="#features">Features</a><a class=lnk href="#install">Install</a>
+ </nav>
+
+ <header class=hero>
+  <div class=panda aria-hidden=true>
+   <svg viewBox="0 0 150 130">
+    <ellipse cx=75 cy=122 rx=52 ry=6 fill="rgba(0,0,0,.12)"/>
+    <circle cx=33 cy=30 r=17 fill="#1c1c20"/><circle cx=117 cy=30 r=17 fill="#1c1c20"/>
+    <ellipse cx=75 cy=72 rx=56 ry=50 fill="#fafaf7" stroke="#1c1c20" stroke-width=2.5 />
+    <ellipse cx=53 cy=68 rx=14 ry=18 transform="rotate(-35 53 68)" fill="#1c1c20"/>
+    <ellipse cx=97 cy=68 rx=14 ry=18 transform="rotate(35 97 68)" fill="#1c1c20"/>
+    <path d="M45 70q8 6 16 0M89 70q8 6 16 0" stroke="#fafaf7" stroke-width=3 fill=none stroke-linecap=round />
+    <ellipse cx=75 cy=90 rx=8 ry=5.5 fill="#1c1c20"/>
+    <path d="M68 99q7 5 14 0" stroke="#1c1c20" stroke-width=2.5 fill=none stroke-linecap=round />
+    <ellipse cx=38 cy=92 rx=9 ry=5 fill="#ff9aa2" opacity=.5 /><ellipse cx=112 cy=92 rx=9 ry=5 fill="#ff9aa2" opacity=.5 />
+   </svg>
+   <span class="z z1">z</span><span class="z z2">z</span><span class="z z3">z</span>
+  </div>
+  <h1>Browse the web,<br><em>nice and cozy.</em></h1>
+  <p class=lead>Snoozle is a calm, panda-themed web browser for Windows. Make it yours with themes, wallpapers and your own gradients.</p>
+  <a class=dl href="https://github.com/LavaAKA/snoozle/releases/latest/download/Snoozle-Setup.exe">
+   <svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Download for Windows
+  </a>
+  <div class=meta>Free · Windows 10 and 11 · about 5 MB</div>
+
+  <div class=shot aria-hidden=true>
+   <div class=strip><div class="tab on"><i></i>New Tab</div><div class=tab><i style="background:#7ec4ff"></i>Wikipedia</div>
+    <div class=lights><i style="background:#febc2e"></i><i style="background:#28c840"></i><i style="background:#ff5f57"></i></div></div>
+   <div class=bar><span class=dot></span><span class=dot></span><div class=pill>Search with DuckDuckGo or enter an address</div><span class=dot></span></div>
+   <div class=page><div class=t>9:41</div><div>Good morning</div><div class=s></div></div>
+  </div>
+ </header>
+
+ <section id=features>
+  <h2>Small browser, lots of charm</h2>
+  <p class=sub>Everything you need to get around the web, with a few cozy extras.</p>
+  <div class=grid>
+   <div class=card><div class=ic>🎨</div><h3>Themes</h3><p>Pick a colour theme and light or dark mode. The whole browser follows along.</p></div>
+   <div class=card><div class=ic>🖼️</div><h3>Wallpapers</h3><p>Bamboo groves, starry skies and more for your new tab page, or use your own picture.</p></div>
+   <div class=card><div class=ic>🌈</div><h3>Your own gradients</h3><p>Mix two or three colours and the gradient flows across the tabs, toolbar and new tab page.</p></div>
+   <div class=card><div class=ic>🧩</div><h3>Extensions</h3><p>Browse and add extensions from the Firefox add-ons store, right inside Snoozle.</p></div>
+   <div class=card><div class=ic>🔑</div><h3>Passwords</h3><p>Snoozle offers to save your logins and keeps them encrypted with your Windows account.</p></div>
+   <div class=card><div class=ic>🕶️</div><h3>Private windows</h3><p>History, cookies and site data are forgotten when you close the window.</p></div>
+   <div class=card><div class=ic>📚</div><h3>Bookmarks</h3><p>A bookmarks bar you can drag around, folders, and import from Chrome or Edge.</p></div>
+   <div class=card><div class=ic>✨</div><h3>Little touches</h3><p>Mac or Windows style window buttons, optional scroll motion blur, and gentle animations.</p></div>
+  </div>
+ </section>
+
+ <section id=install>
+  <h2>Installing Snoozle</h2>
+  <p class=sub>It only takes a moment.</p>
+  <ol class=steps>
+   <li><div><b>Download the setup</b><span>Click <a href="https://github.com/LavaAKA/snoozle/releases/latest/download/Snoozle-Setup.exe">Download for Windows</a> to get <kbd>Snoozle-Setup.exe</kbd>.</span></div></li>
+   <li><div><b>Open it</b><span>Snoozle is new and not yet signed, so Windows may show a blue “Windows protected your PC” box. Click <kbd>More info</kbd>, then <kbd>Run anyway</kbd>.</span></div></li>
+   <li><div><b>Follow the setup</b><span>Snoozle installs for your account and adds itself to the Start menu. You can bring your bookmarks over from Chrome or Edge in Settings.</span></div></li>
+  </ol>
+ </section>
+
+ <div class=cta>
+  <h2>Ready for a cozier web?</h2>
+  <p class=sub>Free to download and use.</p>
+  <a class=dl href="https://github.com/LavaAKA/snoozle/releases/latest/download/Snoozle-Setup.exe">
+   <svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Download for Windows
+  </a>
+  <div class=meta><a href="https://github.com/LavaAKA/snoozle/releases">All versions</a></div>
+ </div>
+</div>
+<footer>Snoozle 🐼 · made with bamboo and naps</footer>
+</body>
+</html>
