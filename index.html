@@ -560,7 +560,8 @@ document.querySelectorAll('.rv').forEach((el, k) => { el.style.transitionDelay =
 // What's new: the latest three releases, straight from GitHub (the cards above stay if this can't load).
 const esc = s => s.replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
 const md = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/`(.+?)`/g, '$1');
-fetch('https://api.github.com/repos/LavaAKA/snoozle/releases?per_page=6').then(r => r.ok ? r.json() : []).then(rs => {
+fetch('https://api.github.com/repos/LavaAKA/snoozle/releases?per_page=20').then(r => r.ok ? r.json() : []).then(rs => {
+  rs.sort((a, b) => new Date(b.published_at) - new Date(a.published_at)); // newest published first, not newest created
   const cards = rs.filter(r => !r.draft && !r.prerelease).slice(0, 3).map(r => {
     const notes = (r.body || '').split(/\n## /)[0].split('\n').filter(l => /^\s*[-*] /.test(l)).slice(0, 4).map(l => `<li>${md(l.replace(/^\s*[-*] /, ''))}</li>`);
     const when = new Date(r.published_at).toLocaleDateString(undefined, {month: 'short', year: 'numeric'});
